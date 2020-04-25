@@ -1,2 +1,3 @@
-
-`node server.js`
+## Dev
+`npm i`
+`npm run dev`

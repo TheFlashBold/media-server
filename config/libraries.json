@@ -3,5 +3,10 @@
         "title": "Serien",
         "type": "series",
         "path": "/home/tycho/Videos/series/"
+    },
+    {
+        "title": "Filme",
+        "type": "movies",
+        "path": "/home/tycho/Videos/movies/"
     }
 ]

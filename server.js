@@ -1,7 +1,7 @@
-require("./lib/Database");
 const MediaScanner = require("./lib/MediaScanner");
 const { createServer } = require("http");
 const next = require("next");
+require("./lib/Database");
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
@@ -17,4 +17,4 @@ app.prepare().then(() => {
 
 setTimeout(() => {
     MediaScanner.Scan();
-}, 250);
+}, 500);
