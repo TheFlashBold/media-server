@@ -1,4 +1,22 @@
 {
+    "1080p-mp4": {
+        "height": 1080,
+        "size": "?x1080",
+        "audioBitrate": 180,
+        "audioChannels": 2,
+        "videoCodec": "libx264",
+        "videoBitrate": 3500,
+        "outputOptions": [
+            "-movflags frag_keyframe+empty_moov+faststart",
+            "-profile:v high",
+            "-preset:v veryfast",
+            "-pix_fmt yuv420p",
+            "-color_primaries 1",
+            "-color_trc 1",
+            "-colorspace 1"
+        ],
+        "toFormat": "mp4"
+    },
     "1080p": {
         "height": 1080,
         "size": "?x1080",

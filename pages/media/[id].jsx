@@ -2,11 +2,20 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
+function formatNumber(value, digits = 2) {
+    return String(value).padStart(digits, "0");
+}
+
 function formatSeconds(value) {
     const seconds = value % 60;
-    const minutes = Math.floor(value / 60);
+    const minutes = Math.floor(value / 60) % 60;
+    const hours = Math.floor(value / 3600) % 12;
 
-    return `${minutes.toFixed(0)}:${seconds.toFixed(0)}`;
+    return [
+        formatNumber(hours.toFixed(0)),
+        formatNumber(minutes.toFixed(0)),
+        formatNumber(seconds.toFixed(0))
+    ].join(":");
 }
 
 let video;
@@ -38,18 +47,22 @@ export default function Media(props) {
         }
     };
 
+    const onStreamChange = ({ target }) => {
+        setStream(target.value);
+    };
+
     return meta && (
         <section className="section">
             <div className="container">
                 <video ref={c => video = c} style={{ width: "100%", height: "auto" }} src={meta.streams[stream].src} controls onTimeUpdate={({ target }) => setTime(target.currentTime)} />
                 <div className="columns">
-                    <input className="slider is-small column is-9" value={offset + time} type="range" min={0} max={meta.duration} onChange={({ target }) => seek(parseFloat(target.value))} />
-                    <div className="column is-3">
+                    <input className="slider is-small column is-8" value={offset + time} type="range" min={0} max={meta.duration} onChange={({ target }) => seek(parseFloat(target.value))} />
+                    <div className="column is-4">
                         <button className="button is-small" onClick={() => seek(offset + time - 10)}>-10s</button>
                         <button className="button is-small" onClick={() => seek(offset + time + 30)}>+30s</button>
                         <span className="subtitle">{formatSeconds(offset + time)} - {formatSeconds(meta.duration)}</span>
                         <div className="select is-small">
-                            <select value={stream} onChange={({ target }) => setStream(target.value)}>
+                            <select value={stream} onChange={onStreamChange}>
                                 {meta.streams.map(({ label }, key) =>
                                     <option key={key} value={key}>{label}</option>
                                 )}

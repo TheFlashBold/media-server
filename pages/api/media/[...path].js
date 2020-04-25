@@ -50,8 +50,11 @@ async function transcodeFile(res, media, preset, seek) {
 
     return new Promise((resolve) => {
         stream.on("end", resolve);
-        stream.on("error", resolve);
-        
+        stream.on("error", (err) => {
+            console.error(err);
+            resolve();
+        });
+
         stream.pipe(res, { end: true });
     });
 }
