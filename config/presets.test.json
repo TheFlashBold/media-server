@@ -1,5 +1,5 @@
 {
-    "1080p": {
+    "1080p-mp4": {
         "height": 1080,
         "size": "?x1080",
         "audioBitrate": 180,
@@ -17,23 +17,35 @@
         ],
         "toFormat": "mp4"
     },
+    "1080p": {
+        "height": 1080,
+        "size": "?x1080",
+        "audioBitrate": 180,
+        "audioChannels": 2,
+        "videoCodec": "libvpx-vp9",
+        "videoBitrate": 2500,
+        "outputOptions": [
+            "-preset:v veryfast",
+            "-pix_fmt yuv420p",
+            "-deadline realtime",
+            "-row-mt 1"
+        ],
+        "toFormat": "webm"
+    },
     "720p": {
         "height": 720,
         "size": "?x720",
         "audioBitrate": 160,
+        "videoCodec": "libvpx-vp9",
+        "videoBitrate": 1200,
         "audioChannels": 2,
-        "videoCodec": "libx264",
-        "videoBitrate": 2200,
         "outputOptions": [
-            "-movflags frag_keyframe+empty_moov+faststart",
-            "-profile:v high",
             "-preset:v veryfast",
             "-pix_fmt yuv420p",
-            "-color_primaries 1",
-            "-color_trc 1",
-            "-colorspace 1"
+            "-deadline realtime",
+            "-row-mt 1"
         ],
-        "toFormat": "mp4"
+        "toFormat": "webm"
     },
     "480p": {
         "height": 480,
