@@ -1,22 +1,8 @@
+import Navigation from "../../components/Navigation";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { formatSeriesInfo, formatSeconds } from "../../lib/Utils";
 import axios from "axios";
-
-function formatNumber(value, digits = 2) {
-    return String(value).padStart(digits, "0");
-}
-
-function formatSeconds(value) {
-    const seconds = value % 60;
-    const minutes = Math.floor(value / 60) % 60;
-    const hours = Math.floor(value / 3600) % 24;
-
-    return [
-        formatNumber(hours.toFixed(0)),
-        formatNumber(minutes.toFixed(0)),
-        formatNumber(seconds.toFixed(0))
-    ].join(":");
-}
 
 let video;
 
@@ -53,11 +39,12 @@ export default function Media(props) {
 
     return meta && (
         <>
+            <Navigation/>
             <section className="hero is-dark">
                 <div className="hero-body">
                     <div className="container">
                         <h1 className="title">{meta.title}</h1>
-                        {meta.season && meta.episode && <h2 className="subtitle">S{meta.season} E{meta.episode}</h2>}
+                        {meta.season && meta.episode && <h2 className="subtitle">{formatSeriesInfo(meta.season, meta.episode)}</h2>}
                     </div>
                 </div>
             </section>

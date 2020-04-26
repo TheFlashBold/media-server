@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { formatSeriesInfo } from "../lib/Utils";
 
 export default function Media({ _id, title, season, episode, image }) {
     return (
@@ -6,7 +7,9 @@ export default function Media({ _id, title, season, episode, image }) {
             <div className="card-image">
                 <figure className="image">
                     <Link href={"/media/" + _id}>
-                        <img src={image} alt="cover" />
+                        <a>
+                            <img src={image} alt="cover" />
+                        </a>
                     </Link>
                 </figure>
             </div>
@@ -14,9 +17,11 @@ export default function Media({ _id, title, season, episode, image }) {
                 <div className="media">
                     <div className="media-content">
                         <Link href={"/media/" + _id}>
-                            <p className="title is-4">{title}</p>
+                            <a>
+                                <p className="title is-4">{title}</p>
+                            </a>
                         </Link>
-                        <p className="subtitle is-6">{season && episode && `S${season}E${episode}`}</p>
+                        <p className="subtitle is-6">{season && episode && formatSeriesInfo(season, episode)}</p>
                     </div>
                 </div>
                 <div className="content">

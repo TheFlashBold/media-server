@@ -1,3 +1,4 @@
+import Navigation from "../components/Navigation";
 import { useEffect, useState } from "react";
 import Media from "../components/Media";
 import Head from "next/head";
@@ -15,8 +16,9 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>noice</title>
+                <title>Media-Server</title>
             </Head>
+            <Navigation/>
             <section className="hero is-dark">
                 <div className="hero-body">
                     <div className="container">
