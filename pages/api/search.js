@@ -16,6 +16,7 @@ export default async (req, res) => {
     };
     const results = await mediaModel
         .find(query)
+        .sort({title: 1, season: 1, episode: 1})
         .skip(page * limit)
         .limit(limit)
         .lean();

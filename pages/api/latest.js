@@ -9,7 +9,7 @@ export default async (req, res) => {
     const results = await mediaModel
         .find()
         .sort({ _createdAt: -1 })
-        .limit(limit || 20)
+        .limit(limit || 5)
         .lean();
 
     res.json(results);

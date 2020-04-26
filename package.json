@@ -1,26 +1,27 @@
 {
-  "name": "media-server",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "node server.js",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "axios": "^0.19.2",
-    "bluebird": "^3.7.2",
-    "bulma-slider": "^2.0.0",
-    "bulma": "^0.8.2",
-    "fluent-ffmpeg": "^2.1.2",
-    "mongoose": "^5.9.10",
-    "next": "9.3.5",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "readdirp": "^3.4.0",
-    "request": "^2.88.2",
-    "request-promise": "^4.2.5",
-    "sass": "^1.26.3",
-    "send": "^0.17.1"
-  }
+    "name": "media-server",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "node server.js",
+        "build": "next build",
+        "start": "next start",
+        "prod": "next build && node server.js"
+    },
+    "dependencies": {
+        "axios": "^0.19.2",
+        "bluebird": "^3.7.2",
+        "bulma-slider": "^2.0.0",
+        "bulma": "^0.8.2",
+        "fluent-ffmpeg": "^2.1.2",
+        "mongoose": "^5.9.10",
+        "next": "9.3.5",
+        "react": "16.13.1",
+        "react-dom": "16.13.1",
+        "readdirp": "^3.4.0",
+        "request": "^2.88.2",
+        "request-promise": "^4.2.5",
+        "sass": "^1.26.3",
+        "send": "^0.17.1"
+    }
 }

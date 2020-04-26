@@ -28,6 +28,7 @@ export default function Home() {
                 </div>
             </section>
             <section className="section">
+                <h2 className="subtitle">Recently added</h2>
                 <div className="columns is-multiline">
                     {latest && latest.map((data, index) =>
                         <div key={index} className="column is-one-fifth">
