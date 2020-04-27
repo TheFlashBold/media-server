@@ -24,8 +24,6 @@ export default function Media({ _id, title, season, episode, year, image }) {
                         <p className="subtitle is-6">{renderMeta({ season, episode, year })}</p>
                     </div>
                 </div>
-                <div className="content">
-                </div>
             </div>
         </div>
     );

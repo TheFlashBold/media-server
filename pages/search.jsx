@@ -41,7 +41,7 @@ export default function Home() {
                 <div className="hero-body">
                     <div className="container">
                         <h1 className="title">Media-Server</h1>
-                        <h2 className="subtitle"></h2>
+                        <h2 className="subtitle">Search</h2>
                     </div>
                 </div>
             </section>

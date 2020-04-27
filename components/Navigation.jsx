@@ -12,6 +12,9 @@ export default function Navigation(props) {
                     <Link href="/search">
                         <a className="navbar-item">Search</a>
                     </Link>
+                    <Link href="/overview">
+                        <a className="navbar-item">Overview</a>
+                    </Link>
                 </div>
             </div>
         </nav>
