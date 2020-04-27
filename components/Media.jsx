@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { formatSeriesInfo } from "../lib/Utils";
+import { renderMeta } from "../lib/Utils";
 
-export default function Media({ _id, title, season, episode, image }) {
+export default function Media({ _id, title, season, episode, year, image }) {
     return (
         <div className="card">
             <div className="card-image">
@@ -21,7 +21,7 @@ export default function Media({ _id, title, season, episode, image }) {
                                 <p className="title is-4">{title}</p>
                             </a>
                         </Link>
-                        <p className="subtitle is-6">{season && episode && formatSeriesInfo(season, episode)}</p>
+                        <p className="subtitle is-6">{renderMeta({ season, episode, year })}</p>
                     </div>
                 </div>
                 <div className="content">
