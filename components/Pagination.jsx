@@ -17,7 +17,7 @@ export default function ({ page, total, limit, load, className }) {
         );
     }
 
-    for (let i = 1; i < pages - 1; i++) {
+    for (let i = Math.max(1, page - 3); i < Math.min(page + 3, pages - 1); i++) {
         items.push(
             <li key={i}>
                 <a className={"pagination-link " + (i === page ? "is-current" : "")} onClick={load.bind(null, i + page)}>{page + i + 1}</a>
