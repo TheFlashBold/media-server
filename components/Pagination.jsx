@@ -25,7 +25,7 @@ export default function ({ page, total, limit, load, className }) {
         );
     }
 
-    if (page + 1 < pages) {
+    if (page < pages) {
         items.push(
             <li key="spacer-2">
                 <span className="pagination-ellipsis">&hellip;</span>
@@ -33,7 +33,7 @@ export default function ({ page, total, limit, load, className }) {
         );
         items.push(
             <li key={pages}>
-                <a className={"pagination-link " + (pages === page ? "is-current" : "")} onClick={load.bind(null, pages - 1)}>{pages}</a>
+                <a className={"pagination-link " + (pages - 1 === page ? "is-current" : "")} onClick={load.bind(null, pages - 1)}>{pages}</a>
             </li>
         );
     }
