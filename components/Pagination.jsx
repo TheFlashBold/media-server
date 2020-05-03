@@ -25,18 +25,19 @@ export default function ({ page, total, limit, load, className }) {
         );
     }
 
-    if (page < pages) {
+    if (page > pages - 3) {
         items.push(
             <li key="spacer-2">
                 <span className="pagination-ellipsis">&hellip;</span>
             </li>
         );
-        items.push(
-            <li key={pages}>
-                <a className={"pagination-link " + (pages - 1 === page ? "is-current" : "")} onClick={load.bind(null, pages - 1)}>{pages}</a>
-            </li>
-        );
     }
+
+    items.push(
+        <li key={pages}>
+            <a className={"pagination-link " + (pages - 1 === page ? "is-current" : "")} onClick={load.bind(null, pages - 1)}>{pages}</a>
+        </li>
+    );
 
     return (
         <nav className={className || "pagination is-centered"}>
