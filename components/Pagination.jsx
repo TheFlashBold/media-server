@@ -25,7 +25,7 @@ export default function ({ page, total, limit, load, className }) {
         );
     }
 
-    if (page > pages - 3) {
+    if (page < pages - 3) {
         items.push(
             <li key="spacer-2">
                 <span className="pagination-ellipsis">&hellip;</span>
