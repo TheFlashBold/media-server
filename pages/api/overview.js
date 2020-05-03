@@ -16,6 +16,7 @@ export default async (req, res) => {
         {
             $group: {
                 _id: "$imdbId",
+                id: { $first: "$_id" },
                 title: { $first: "$title" },
                 image: { $first: "$image" },
                 year: { $first: "$year" },
@@ -27,6 +28,14 @@ export default async (req, res) => {
                         _id: "$_id",
                     },
                 },
+            },
+        },
+        {
+            $project: {
+                _id: "$id",
+                title: "$title",
+                image: "$image",
+                year: "$year",
             },
         },
         {
@@ -42,7 +51,7 @@ export default async (req, res) => {
         pagination: {
             page,
             limit,
-            total: (await mediaModel.distinct('imdbId')).length
+            total: (await mediaModel.distinct("imdbId")).length,
         },
     });
 };
