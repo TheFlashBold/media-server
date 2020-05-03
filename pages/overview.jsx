@@ -1,16 +1,23 @@
 import Navigation from "../components/Navigation";
+import Pagination from "../components/Pagination";
 import Media from "../components/Media";
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import axios from "axios";
 
-export default function Home() {
-    const [results, setResults] = useState(null);
+const LIMIT = 20;
 
-    useEffect(async () => {
-        const { data } = await axios.get('/api/overview');
-        setResults(data);
+export default function Home() {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        loadData(0);
     }, []);
+
+    const loadData = async (page) => {
+        const { data } = await axios.get(`/api/overview?limit=${LIMIT}&page=${page}`);
+        setData(data);
+    }
 
     return (
         <>
@@ -28,10 +35,15 @@ export default function Home() {
             </section>
             <section className="section">
                 <div className="columns is-multiline">
-                    {results && results.map((data, index) =>
-                        <div key={index} className="column is-one-fifth">
-                            <Media {...data} />
-                        </div>
+                    {data && (
+                        <>
+                            {data.results && data.results.map((data, index) =>
+                                <div key={index} className="column is-one-fifth">
+                                    <Media {...data} />
+                                </div>
+                            )}
+                            <Pagination {...data.pagination} load={loadData} className="pagination is-centered column is-12"/>
+                        </>
                     )}
                 </div>
             </section>

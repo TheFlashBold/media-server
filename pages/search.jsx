@@ -1,4 +1,5 @@
 import Navigation from "../components/Navigation";
+import Pagination from "../components/Pagination";
 import Media from "../components/Media";
 import { useState } from "react";
 import Head from "next/head";
@@ -7,16 +8,12 @@ import axios from "axios";
 const LIMIT = 10;
 
 export default function Home() {
-    const [results, setResults] = useState(null);
+    const [data, setData] = useState(null);
     const [term, setTerm] = useState("");
-    const [page, setPage] = useState(0);
-    const [hasMore, setHasMore] = useState(false);
 
-    const search = async (page) => {
-        const { data: { results: newResults, page: newPage, hasMore } } = await axios.get(`/api/search?term=${encodeURI(term)}&limit=${LIMIT}&page=${page}`)
-        setResults(!page ? newResults : results.concat(newResults));
-        setPage(newPage);
-        setHasMore(hasMore);
+    const loadData = async (page) => {
+        const { data } = await axios.get(`/api/search?term=${encodeURI(term)}&limit=${LIMIT}&page=${page}`)
+        setData(data);
     };
 
     const onSearchChange = ({ target }) => {
@@ -24,11 +21,11 @@ export default function Home() {
     }
 
     const onSearch = () => {
-        search(0);
+        loadData(0);
     };
 
     const onLoadMore = () => {
-        search(page + 1);
+        loadData(page + 1);
     };
 
     return (
@@ -36,7 +33,7 @@ export default function Home() {
             <Head>
                 <title>Search</title>
             </Head>
-            <Navigation/>
+            <Navigation />
             <section className="hero is-dark">
                 <div className="hero-body">
                     <div className="container">
@@ -55,17 +52,15 @@ export default function Home() {
                     </div>
                 </div>
                 <div className="columns is-multiline">
-                    {results && results.map((data, index) =>
-                        <div key={index} className="column is-one-fifth">
-                            <Media {...data} />
-                        </div>
-                    )}
-                    {hasMore && (
-                        <nav className="level column is-12">
-                            <p className="level-item has-text-centered">
-                                <a onClick={onLoadMore}>load more</a>
-                            </p>
-                        </nav>
+                    {data && (
+                        <>
+                            {data.results && data.results.map((data, index) =>
+                                <div key={index} className="column is-one-fifth">
+                                    <Media {...data} />
+                                </div>
+                            )}
+                            <Pagination {...data.pagination} load={loadData} className="pagination is-centered column is-12"/>
+                        </>
                     )}
                 </div>
             </section>

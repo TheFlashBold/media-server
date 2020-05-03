@@ -1,11 +1,17 @@
 const mongoose = require("mongoose");
 
 export default async (req, res) => {
+    let {
+        query: { limit, page },
+    } = req;
     const mediaModel = mongoose.model("media");
 
-    const titles = await mediaModel.aggregate([
+    limit = parseInt(limit) || 20;
+    page = parseInt(page) || 0;
+
+    const results = await mediaModel.aggregate([
         {
-            $sort: { title: 1, season: 1, episode: 1 }
+            $sort: { title: 1, season: 1, episode: 1 },
         },
         {
             $group: {
@@ -18,12 +24,25 @@ export default async (req, res) => {
                         episode: "$episode",
                         season: "$season",
                         image: "$image",
-                        _id: "$_id"
-                    }
-                }
-            }
-        }
+                        _id: "$_id",
+                    },
+                },
+            },
+        },
+        {
+            $skip: limit * page,
+        },
+        {
+            $limit: limit,
+        },
     ]);
 
-    res.json(titles);
+    res.json({
+        results,
+        pagination: {
+            page,
+            limit,
+            total: (await mediaModel.distinct('imdbId')).length
+        },
+    });
 };

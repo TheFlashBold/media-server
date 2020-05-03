@@ -16,7 +16,7 @@ export default async (req, res) => {
     };
     const results = await mediaModel
         .find(query)
-        .sort({title: 1, season: 1, episode: 1})
+        .sort({ title: 1, season: 1, episode: 1 })
         .skip(page * limit)
         .limit(limit)
         .lean();
@@ -24,10 +24,11 @@ export default async (req, res) => {
 
     res.json({
         term,
-        page,
-        limit,
         results,
-        total,
-        hasMore: total > (page + 1) * limit,
+        pagination: {
+            page,
+            limit,
+            total
+        },
     });
 };
