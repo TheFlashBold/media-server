@@ -17,7 +17,7 @@ export default function ({ page, total, limit, load, className }) {
         );
     }
 
-    for (let i = Math.max(1, page - 3); i < Math.min(page + 3, pages); i++) {
+    for (let i = Math.max(1, page - 2); i < Math.min(page + 3, pages - 1); i++) {
         items.push(
             <li key={i}>
                 <a className={"pagination-link " + (i === page ? "is-current" : "")} onClick={load.bind(null, i)}>{i + 1}</a>
@@ -31,12 +31,9 @@ export default function ({ page, total, limit, load, className }) {
                 <span className="pagination-ellipsis">&hellip;</span>
             </li>
         );
-    }
-
-    if (pages) {
         items.push(
             <li key={pages}>
-                <a className={"pagination-link " + (pages === page ? "is-current" : "")} onClick={load.bind(null, pages)}>{pages + 1}</a>
+                <a className={"pagination-link " + (pages === page ? "is-current" : "")} onClick={load.bind(null, pages - 1)}>{pages}</a>
             </li>
         );
     }
