@@ -31,4 +31,4 @@ yarn-error.log*
 
 # custom
 package-lock.json
-/.cache/
+.cache/*
