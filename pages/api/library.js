@@ -22,7 +22,7 @@ export default async (req, res) => {
             $match: { library: library._id },
         },
         {
-            $sort: { title: 1, season: 1, episode: 1 },
+            $sort: { title: -1, season: 1, episode: 1 },
         },
         {
             $group: {
