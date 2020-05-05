@@ -1,5 +1,3 @@
-import m from "gm";
-
 const mongoose = require("mongoose");
 
 export default async (req, res) => {
