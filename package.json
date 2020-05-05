@@ -11,9 +11,10 @@
     "dependencies": {
         "axios": "^0.19.2",
         "bluebird": "^3.7.2",
-        "bulma-slider": "^2.0.0",
         "bulma": "^0.8.2",
+        "bulma-slider": "^2.0.0",
         "fluent-ffmpeg": "^2.1.2",
+        "gm": "^1.23.1",
         "mongoose": "^5.9.10",
         "next": "9.3.5",
         "react": "16.13.1",

@@ -22,7 +22,7 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>Search</title>
+                <title>Overview</title>
             </Head>
             <Navigation />
             <section className="hero is-dark">

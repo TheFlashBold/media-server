@@ -4,15 +4,15 @@ import { renderMeta } from "../lib/Utils";
 export default function Media({ _id, title, season, episode, year, image }) {
     return (
         <div className="card">
-            <div className="card-image">
+            {image && (<div className="card-image">
                 <figure className="image">
                     <Link href={"/media/" + _id}>
                         <a>
-                            <img src={image} alt="cover" />
+                            <img src={`/api/img/${image}?size=cover-small`} alt="cover" />
                         </a>
                     </Link>
                 </figure>
-            </div>
+            </div>)}
             <div className="card-content">
                 <div className="media">
                     <div className="media-content">
