@@ -15,7 +15,7 @@ export default async (req, res) => {
         },
         {
             $group: {
-                _id: "$imdbId",
+                _id: "$title",
                 id: { $first: "$_id" },
                 title: { $first: "$title" },
                 image: { $first: "$image" },
