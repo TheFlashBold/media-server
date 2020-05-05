@@ -6,7 +6,7 @@ export default async (req, res) => {
     } = req;
 
     const libraryModel = mongoose.model("library");
-    const library = await libraryModel.findOne({ _id: libraryId }).lean();
+    const library = await libraryModel.findOne({ _id: libraryId });
 
     if (!library) {
         return res.status(404);
@@ -19,7 +19,7 @@ export default async (req, res) => {
 
     const results = await mediaModel.aggregate([
         {
-            $match: { library: libraryId },
+            $match: { library: library._id },
         },
         {
             $sort: { title: 1, season: 1, episode: 1 },
