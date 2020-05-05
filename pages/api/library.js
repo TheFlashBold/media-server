@@ -63,7 +63,18 @@ export default async (req, res) => {
         pagination: {
             page,
             limit,
-            total: await mediaModel.count({ _id: libraryId }),
+            total: (
+                await mediaModel.aggregate([
+                    {
+                        $match: { library: library._id },
+                    },
+                    {
+                        $group: {
+                            _id: "$title",
+                        },
+                    },
+                ])
+            ).length,
         },
     });
 };
