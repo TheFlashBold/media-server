@@ -14,6 +14,8 @@ export default async (req, res) => {
         return res.status(404);
     }
 
+    res.setHeader("Content-Type", await image.getMimeType());
+
     const imageStream = await image.getSize(size);
     imageStream.pipe(res, { end: true });
 };
