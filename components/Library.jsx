@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Pagination from "./Pagination";
+import Head from "next/head";
 import Media from "./Media";
 import axios from "axios";
 
@@ -20,15 +21,28 @@ export default function ({ limit }) {
     }
 
     return data && (
-        <section className="section">
-            <div className="columns is-multiline">
-                {data.results && data.results.map((data, index) =>
-                    <div key={index} className="column is-one-fifth">
-                        <Media {...data} />
+        <>
+            <Head>
+                <title>{data.library.title}</title>
+            </Head>
+            <section className="hero is-dark">
+                <div className="hero-body">
+                    <div className="container">
+                        <h1 className="title">Media-Server</h1>
+                        <h2 className="subtitle">{data.library.title}</h2>
                     </div>
-                )}
-                <Pagination {...data.pagination} load={loadData} className="pagination is-centered column is-12" />
-            </div>
-        </section>
+                </div>
+            </section>
+            <section className="section">
+                <div className="columns is-multiline">
+                    {data.results && data.results.map((data, index) =>
+                        <div key={index} className="column is-one-fifth">
+                            <Media {...data} />
+                        </div>
+                    )}
+                    <Pagination {...data.pagination} load={loadData} className="pagination is-centered column is-12" />
+                </div>
+            </section>
+        </>
     );
 }
