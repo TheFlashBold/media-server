@@ -1,5 +1,5 @@
 const presets = require("../../../config/presets.json");
-const { getUser } = require("../../lib/Auth");
+const { getUser } = require("../../../lib/Auth");
 const ffmpeg = require("fluent-ffmpeg");
 const mongoose = require("mongoose");
 const send = require("send");
