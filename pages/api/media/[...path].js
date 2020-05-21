@@ -1,4 +1,5 @@
 const presets = require("../../../config/presets.json");
+const { getUser } = require("../../lib/Auth");
 const ffmpeg = require("fluent-ffmpeg");
 const mongoose = require("mongoose");
 const send = require("send");
@@ -60,6 +61,8 @@ async function transcodeFile(res, media, preset, seek) {
 }
 
 export default async (req, res) => {
+    if (!(await getUser(req, res))) return;
+
     const {
         query: {
             path: [id, preset],

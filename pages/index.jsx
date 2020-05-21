@@ -1,3 +1,4 @@
+import Authorization from "../components/Authorization";
 import Navigation from "../components/Navigation";
 import { useEffect, useState } from "react";
 import Media from "../components/Media";
@@ -14,11 +15,11 @@ export default function Home() {
     }, []);
 
     return (
-        <>
+        <Authorization>
             <Head>
                 <title>Media-Server</title>
             </Head>
-            <Navigation/>
+            <Navigation />
             <section className="hero is-dark">
                 <div className="hero-body">
                     <div className="container">
@@ -37,6 +38,6 @@ export default function Home() {
                     )}
                 </div>
             </section>
-        </>
+        </Authorization>
     );
 }

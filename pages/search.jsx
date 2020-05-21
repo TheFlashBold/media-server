@@ -1,3 +1,4 @@
+import Authorization from "../components/Authorization";
 import Navigation from "../components/Navigation";
 import Pagination from "../components/Pagination";
 import Media from "../components/Media";
@@ -29,7 +30,7 @@ export default function Home() {
     };
 
     return (
-        <>
+        <Authorization>
             <Head>
                 <title>Search</title>
             </Head>
@@ -43,12 +44,12 @@ export default function Home() {
                 </div>
             </section>
             <section className="section">
-                <div class="field has-addons is-fullwidth">
-                    <div class="control">
-                        <input class="input" type="text" placeholder="search..." value={term} onChange={onSearchChange} onKeyDown={({ keyCode }) => keyCode === 13 && onSearch()} />
+                <div className="field has-addons is-fullwidth">
+                    <div className="control">
+                        <input className="input" type="text" placeholder="search..." value={term} onChange={onSearchChange} onKeyDown={({ keyCode }) => keyCode === 13 && onSearch()} />
                     </div>
-                    <div class="control">
-                        <button class="button is-info" onClick={onSearch}>search</button>
+                    <div className="control">
+                        <button className="button is-info" onClick={onSearch}>search</button>
                     </div>
                 </div>
                 <div className="columns is-multiline">
@@ -59,11 +60,11 @@ export default function Home() {
                                     <Media {...data} />
                                 </div>
                             )}
-                            <Pagination {...data.pagination} load={loadData} className="pagination is-centered column is-12"/>
+                            <Pagination {...data.pagination} load={loadData} className="pagination is-centered column is-12" />
                         </>
                     )}
                 </div>
             </section>
-        </>
+        </Authorization>
     );
 }

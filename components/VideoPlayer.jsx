@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { formatSeconds } from "../lib/Utils";
+import styles from "./Videoplayer.module.css"
 
 export default function VideoPlayer({ streams, duration }) {
     const [stream, setStream] = useState(0);
@@ -45,7 +46,7 @@ export default function VideoPlayer({ streams, duration }) {
                 src={streams[stream].src}
                 onTimeUpdate={({ target }) => setTime(target.currentTime)}
             />
-            <div className="columns">
+            <div className="columns" className={{ marginTop: "-58px", position: "relative" }}>
                 <div className="column is-1">
                     <button className="button is-small" onClick={onToggle}>play/pause</button>
                 </div>
@@ -57,12 +58,11 @@ export default function VideoPlayer({ streams, duration }) {
                     max={duration}
                     onChange={({ target }) => seek(parseFloat(target.value))}
                 />
-                <div className="column is-5">
-                    <button className="button is-small" onClick={() => seek(offset + time - 10)}>-10s</button>
-                    <button className="button is-small" onClick={() => seek(offset + time + 30)}>+30s</button>
-                    <span className="subtitle">{formatSeconds(offset + time)} - {formatSeconds(duration)}</span>
-                    <input
-                        className="slider is-small"
+                <div className="column is-5 columns is-desktop is-vcentered">
+                    <button className="collumn button is-small" onClick={() => seek(offset + time - 10)}>-10s</button>
+                    <button className="collumn button is-small" onClick={() => seek(offset + time + 30)}>+30s</button>
+                    <span className="collumn subtitle" style={{ paddingTop: "23px" }}>{formatSeconds(offset + time)} - {formatSeconds(duration)}</span>
+                    <input className={styles.volumeSlider + "slider is-small"}
                         value={volume}
                         type="range"
                         min={0}
@@ -70,7 +70,7 @@ export default function VideoPlayer({ streams, duration }) {
                         step={0.01}
                         onChange={onVolumeChange}
                     />
-                    <div className="select is-small">
+                    <div className="select is-small collumn">
                         <select value={stream} onChange={onStreamChange}>
                             {streams.map(({ label }, key) =>
                                 <option key={key} value={key}>{label}</option>

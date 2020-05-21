@@ -1,3 +1,4 @@
+import Authorization from "../../components/Authorization";
 import Navigation from "../../components/Navigation";
 import Pagination from "../../components/Pagination";
 import Media from "../../components/Media";
@@ -23,7 +24,7 @@ export default function Home() {
     }
 
     return data && (
-        <>
+        <Authorization>
             <Head>
                 <title>{data.library.title}</title>
             </Head>
@@ -46,6 +47,6 @@ export default function Home() {
                     <Pagination {...data.pagination} load={loadData} className="pagination is-centered column is-12" />
                 </div>
             </section>
-        </>
+        </Authorization>
     );
 }

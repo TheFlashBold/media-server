@@ -1,4 +1,5 @@
 import Navigation from "../../components/Navigation";
+import Authorization from "../../components/Authorization";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
@@ -7,13 +8,12 @@ import axios from "axios";
 export default function Home() {
     const [data, setData] = useState(null);
 
-    useEffect(async () => {
-        const { data } = await axios.get(`/api/libraries`);
-        setData(data);
+    useEffect(() => {
+        axios.get(`/api/libraries`).then(({ data }) => setData(data));
     }, []);
 
     return data && (
-        <>
+        <Authorization>
             <Head>
                 <title>Libraries</title>
             </Head>
@@ -45,6 +45,6 @@ export default function Home() {
                     </table>
                 </div>
             </section>
-        </>
+        </Authorization>
     );
 }

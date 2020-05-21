@@ -1,3 +1,4 @@
+import Authorization from "../../components/Authorization";
 import VideoPlayer from "../../components/VideoPlayer";
 import Navigation from "../../components/Navigation";
 import { renderMeta } from "../../lib/Utils";
@@ -18,7 +19,7 @@ export default function Media(props) {
     }, [id]);
 
     return meta && (
-        <>
+        <Authorization>
             <Navigation />
             <section className="hero is-dark">
                 <div className="hero-body">
@@ -55,6 +56,6 @@ export default function Media(props) {
                     <VideoPlayer {...meta} />
                 </div>
             </section>
-        </>
+        </Authorization>
     );
 }

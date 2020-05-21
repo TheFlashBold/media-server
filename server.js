@@ -15,6 +15,6 @@ app.prepare().then(() => {
     });
 });
 
-setTimeout(() => {
+setTimeout(async () => {
     MediaScanner.Scan();
 }, 500);

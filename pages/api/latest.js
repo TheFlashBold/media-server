@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
+const { getUser } = require("../../lib/Auth");
 
 export default async (req, res) => {
+    if (!(await getUser(req, res))) return;
+
     const {
         query: { limit },
     } = req;
