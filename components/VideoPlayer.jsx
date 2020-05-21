@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { formatSeconds } from "../lib/Utils";
-import styles from "./Videoplayer.module.css"
+import styles from "./VideoPlayer.module.css"
 
 export default function VideoPlayer({ streams, duration }) {
     const [stream, setStream] = useState(0);
