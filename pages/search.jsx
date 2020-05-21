@@ -1,34 +1,9 @@
 import Authorization from "../components/Authorization";
 import Navigation from "../components/Navigation";
-import Pagination from "../components/Pagination";
-import Media from "../components/Media";
-import { useState } from "react";
+import Search from "../components/Search";
 import Head from "next/head";
-import axios from "axios";
 
-const LIMIT = 10;
-
-export default function Home() {
-    const [data, setData] = useState(null);
-    const [term, setTerm] = useState("");
-
-    const loadData = async (page) => {
-        const { data } = await axios.get(`/api/search?term=${encodeURI(term)}&limit=${LIMIT}&page=${page}`)
-        setData(data);
-    };
-
-    const onSearchChange = ({ target }) => {
-        setTerm(target.value);
-    }
-
-    const onSearch = () => {
-        loadData(0);
-    };
-
-    const onLoadMore = () => {
-        loadData(page + 1);
-    };
-
+export default function () {
     return (
         <Authorization>
             <Head>
@@ -43,28 +18,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <section className="section">
-                <div className="field has-addons is-fullwidth">
-                    <div className="control">
-                        <input className="input" type="text" placeholder="search..." value={term} onChange={onSearchChange} onKeyDown={({ keyCode }) => keyCode === 13 && onSearch()} />
-                    </div>
-                    <div className="control">
-                        <button className="button is-info" onClick={onSearch}>search</button>
-                    </div>
-                </div>
-                <div className="columns is-multiline">
-                    {data && (
-                        <>
-                            {data.results && data.results.map((data, index) =>
-                                <div key={index} className="column is-one-fifth">
-                                    <Media {...data} />
-                                </div>
-                            )}
-                            <Pagination {...data.pagination} load={loadData} className="pagination is-centered column is-12" />
-                        </>
-                    )}
-                </div>
-            </section>
+            <Search limit={20} />
         </Authorization>
     );
 }

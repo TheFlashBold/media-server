@@ -1,18 +1,10 @@
-import Navigation from "../../components/Navigation";
 import Authorization from "../../components/Authorization";
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import Navigation from "../../components/Navigation";
+import Libraries from "../../components/Libraries";
 import Head from "next/head";
-import axios from "axios";
 
-export default function Home() {
-    const [data, setData] = useState(null);
-
-    useEffect(() => {
-        axios.get(`/api/libraries`).then(({ data }) => setData(data));
-    }, []);
-
-    return data && (
+export default function () {
+    return (
         <Authorization>
             <Head>
                 <title>Libraries</title>
@@ -26,25 +18,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <section className="section">
-                <div className="columns is-multiline">
-                    <table className="table is-fullwidth">
-                        <tbody>
-                            {data.map(({ _id, title }, index) =>
-                                <tr key={index}>
-                                    <td className="has-text-centered">
-                                        <Link href={"/library/" + _id}>
-                                            <a>
-                                                {title}
-                                            </a>
-                                        </Link>
-                                    </td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
-                </div>
-            </section>
+            <Libraries />
         </Authorization>
     );
 }
