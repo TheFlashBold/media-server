@@ -5,7 +5,7 @@ import Library from "../../components/Library";
 
 export default function Home() {
 
-    return data && (
+    return (
         <Authorization>
             <Head>
                 <title>{data.library.title}</title>
