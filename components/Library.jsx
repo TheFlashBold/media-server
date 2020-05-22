@@ -34,9 +34,9 @@ export default function ({ limit }) {
                 </div>
             </section>
             <section className="section">
-                <div className="columns is-multiline">
+                <div className="columns is-multiline is-variable is-1">
                     {data.results && data.results.map((data, index) =>
-                        <div key={index} className="column is-one-fifth">
+                        <div key={index} className="column is-2" style={{width: "10%"}}>
                             <Media {...data} />
                         </div>
                     )}

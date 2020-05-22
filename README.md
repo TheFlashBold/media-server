@@ -6,3 +6,9 @@ requires ffmpeg & graphicsmagick
 `npm run dev`
 ## Prod
 `npm run prod`
+# Cli
+`node cli.js <action> <...params>`
+## Add user
+`node cli.js adduser username "super secret password"`
+or via npm-scripts
+`npm run adduser username "super secret password"`

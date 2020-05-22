@@ -1,20 +1,22 @@
 const MediaScanner = require("./lib/MediaScanner");
 const { createServer } = require("http");
 const next = require("next");
-require("./lib/Database");
+const Database = require("./lib/Database");
 
-const port = parseInt(process.env.PORT, 10) || 3000;
-const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
-const handle = app.getRequestHandler();
+Database.then(() => {
+    const port = parseInt(process.env.PORT, 10) || 3000;
+    const dev = process.env.NODE_ENV !== "production";
+    const app = next({ dev });
+    const handle = app.getRequestHandler();
 
-app.prepare().then(() => {
-    createServer(handle).listen(port, (err) => {
-        if (err) throw err;
-        console.log(`> Ready on http://localhost:${port}`);
+    app.prepare().then(() => {
+        createServer(handle).listen(port, (err) => {
+            if (err) throw err;
+            console.log(`> Ready on http://localhost:${port}`);
+        });
     });
-});
 
-setTimeout(async () => {
-    MediaScanner.Scan();
-}, 500);
+    setTimeout(async () => {
+        MediaScanner.Scan();
+    }, 500);
+});

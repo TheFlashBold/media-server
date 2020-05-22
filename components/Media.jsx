@@ -18,7 +18,7 @@ export default function Media({ _id, title, season, episode, year, image }) {
                     <div className="media-content">
                         <Link href={"/media/" + _id}>
                             <a>
-                                <p className="title is-4">{title}</p>
+                                <p className="title is-6">{title}</p>
                             </a>
                         </Link>
                         <p className="subtitle is-6">{renderMeta({ season, episode, year })}</p>

@@ -46,7 +46,7 @@ export default function VideoPlayer({ streams, duration }) {
                 src={streams[stream].src}
                 onTimeUpdate={({ target }) => setTime(target.currentTime)}
             />
-            <div className="columns" className={{ marginTop: "-58px", position: "relative" }}>
+            <div className="columns" style={{ marginTop: "-58px", position: "relative" }}>
                 <div className="column is-1">
                     <button className="button is-small" onClick={onToggle}>play/pause</button>
                 </div>
